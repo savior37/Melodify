@@ -1,0 +1,292 @@
+    :root {
+            --primary-color: #7b1fa2;
+            --secondary-color: #28a745;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-container {
+            margin-right: 30px;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .header-main {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .brand-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .social {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        
+        .social svg {
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .social svg:hover {
+            transform: scale(1.1);
+        }
+        
+        .main-nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-item {
+            position: relative;
+            margin-left: 25px;
+        }
+        
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 8px 0;
+            transition: color 0.3s;
+        }
+        
+        .nav-item a:hover, .nav-item.active a {
+            color: var(--primary-color);
+        }
+        
+        .user-nav a {
+            background-color: var(--secondary-color);
+            color: var(--white) !important;
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s;
+        }
+        
+        .user-nav a:hover {
+            background-color: #218838;
+        }
+        
+        /* Login Section Styles */
+        .content {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 0 40px;
+        }
+        
+        .login-container {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .login-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        
+        .login-title {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: #6a1b9a;
+        }
+        
+        .login-footer {
+            margin-top: 25px;
+            text-align: center;
+        }
+        
+        .login-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: #222;
+            color: var(--white);
+            padding: 50px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .footer-div {
+            margin-top: 30px;
+        }
+        
+        .footer-div svg {
+            margin-right: 15px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .footer-div svg:hover {
+            transform: scale(1.1);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .header-main {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .brand-name {
+                margin-bottom: 15px;
+            }
+            
+            .main-nav {
+                flex-wrap: wrap;
+                width: 100%;
+            }
+            
+            .nav-item {
+                margin: 5px 15px 5px 0;
+            }
+            
+            .login-container {
+                width: 90%;
+            }
+        }
