@@ -62,3 +62,8 @@
                 </div>
             </div>
     </header>
+
+    <?php if(message()):?>
+
+        <div class = "alert"><?=message('', false)?></div>
+    <?php endif;?>

@@ -75,4 +75,30 @@ function message($message = '', $clear = false)
     return false;
 }
 
+function redirect($page)
+{
+    header("Location: ".ROOT."/".$page);
+    die;
+}
 
+function set_value($key)
+{
+    if(!empty($_POST[$key]))
+    {
+        return $_POST[$key];
+    }
+
+    return '';
+}
+
+function set_select($key, $value)
+{
+    if(!empty($_POST[$key]))
+    {
+        if($_POST[$key] == $value){        
+            return " selected ";
+        }
+    }
+
+    return '';
+}
