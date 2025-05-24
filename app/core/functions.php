@@ -60,3 +60,19 @@ function db_query_one($query, $data = array())
     return false;
 }
 
+function message($message = '', $clear = false)
+{
+    if(!empty($message)){
+        $_SESSION['message'] = $message;
+    } else {
+
+        $msg = $_SESSION['message'];
+        if($clear){
+            unset($_SESSION['message']);
+        }
+        return $msg;
+    }
+    return false;
+}
+
+

@@ -205,14 +205,14 @@
                 <!-- Release 4 -->
                 <div class="music-card">
                     <div class="card-image-container">
-                        <img src="<?=ROOT?>/assets/images/leehi.jpg" alt="Album Cover">
+                        <img src="<?=ROOT?>/assets/images/aziz.jpeg" alt="Album Cover">
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">H.S.K.T.</h3>
-                        <p class="card-subtitle">Lee Hi</p>
+                        <h3 class="card-title">Somebody's Pleasure</h3>
+                        <p class="card-subtitle">Aziz Hedra</p>
                         <div class="card-meta">
-                            <span class="play-count">3.4M plays</span>
-                            <span class="card-badge">Country</span>
+                            <span class="play-count">9999M plays</span>
+                            <span class="card-badge">Sad Song</span>
                         </div>
                     </div>
                 </div>
