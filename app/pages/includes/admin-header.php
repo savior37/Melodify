@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melodify - Your Music Journey Starts Here</title>
-    <link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/style.css?45">
+    <link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/style.css?455">
 </head>
 <style>
     header a{
@@ -64,6 +64,5 @@
     </header>
 
     <?php if(message()):?>
-
-        <div class = "alert"><?=message('', false)?></div>
+        <div class="alert"><?=message('',true)?></div>
     <?php endif;?>

@@ -29,7 +29,8 @@ function db_query($query, $data = array())
         if($check){
             $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-            if(is_array(result)&& count(result)>0)
+            if(is_array($result) && count($result) > 0)
+
             {
                 return $result;
             }
@@ -66,11 +67,14 @@ function message($message = '', $clear = false)
         $_SESSION['message'] = $message;
     } else {
 
-        $msg = $_SESSION['message'];
-        if($clear){
-            unset($_SESSION['message']);
+        if(!empty($_SESSION['message'])){
+
+            $msg = $_SESSION['message'];
+            if($clear){
+                unset($_SESSION['message']);
+            }
+            return $msg;
         }
-        return $msg;
     }
     return false;
 }
