@@ -1,6 +1,6 @@
 <?php
 
-message("testing one two");
+//message("testing one two");
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
 
@@ -67,20 +67,20 @@ message("testing one two");
             <form method="post">
                 <h3>Add New User</h3>
                 <div style="margin-bottom: 15px;">
-                    <input class="form-control my-1" value="<?=set_value('username')?>" type="text" name="username" placeholder="Username"
+                    <input class="form-control" value="<?=set_value('username')?>" type="text" name="username" placeholder="Username"
                         style="width: 100%; border-radius: 6px; padding: 8px 12px;">
                     <?php if (!empty($errors['username'])): ?>
                         <small class="error"><?= $errors['username'] ?></small>
                     <?php endif; ?>
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <input class="form-control my-1" value="<?=set_value('email')?>" type="email" name="email" placeholder="Email"
+                    <input class="form-control" value="<?=set_value('email')?>" type="email" name="email" placeholder="Email"
                         style="width: 100%; border-radius: 6px; padding: 8px 12px;">
                     <?php if (!empty($errors['email'])): ?>
                         <small class="error"><?= $errors['email'] ?></small>
                     <?php endif; ?>
                 </div>
-                <select name="role" class="form-control my-1">
+                <select name="role" class="form-control">
                     <option value="">--Select Role--</option>
                     <option <?=set_select('role', 'user')?> value="user">User</option>
                     <option <?=set_select('role', 'admin')?> value="admin">Admin</option>
@@ -89,7 +89,7 @@ message("testing one two");
                     <small class="error"><?= $errors['role'] ?></small>
                 <?php endif; ?>
                 <div style="margin-bottom: 15px;">
-                    <input class="form-control my-1" value="<?=set_value('password')?>" type="password" name="password" placeholder="Password"
+                    <input class="form-control" value="<?=set_value('password')?>" type="password" name="password" placeholder="Password"
                         style="width: 100%; border-radius: 6px; padding: 8px 12px;">
                 </div>
                 <?php if (!empty($errors['password'])): ?>
@@ -97,7 +97,7 @@ message("testing one two");
                 <?php endif; ?>
 
                 <div style="margin-bottom: 15px;">
-                    <input class="form-control my-1" value="<?=set_value('retype_password')?>" type="password" name="retype_password" placeholder="Confirm Password"
+                    <input class="form-control" value="<?=set_value('retype_password')?>" type="password" name="retype_password" placeholder="Confirm Password"
                         style="width: 100%; border-radius: 6px; padding: 8px 12px;">
                 </div>
                 <button class="btn bg-orange" type="submit" style="border-radius: 6px; padding: 8px 16px;">Create</button>
@@ -123,7 +123,9 @@ message("testing one two");
                 <button class="float-end btn bg-purple" style="border-radius: 6px; padding: 8px 16px;">Add New</button>
             </a>
         </h3>
+
         <table class="table">
+            
             <tr>
                 <th>ID</th>
                 <th>Username</th>
@@ -140,10 +142,14 @@ message("testing one two");
                         <td><?=$row['username']?></td>
                         <td><?=$row['email']?></td>
                         <td><?=$row['role']?></td>
-                        <td><?=$row['date']?></td>
+                        <td><?=get_date($row['date'])?></td>
                         <td>
-                            <img class="" src="<?=ROOT?>/assets/icons/pencil-square.svg">
-                            <img class="" src="<?=ROOT?>/assets/icons/trash3.svg">
+                            <a href="<?=ROOT?>/admin/users/edit/<?=$row['id']?>">
+                                <img class="bi" src="<?=ROOT?>/assets/icons/pencil-square.svg">
+                            </a>
+                            <a href="<?=ROOT?>/admin/users/delete/<?=$row['id']?>">
+                                <img class="bi" src="<?=ROOT?>/assets/icons/trash3.svg">
+                            </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

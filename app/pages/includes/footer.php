@@ -8,7 +8,11 @@
                     <li><a href="<?=ROOT?>/musik">Musik</a></li>
                     <li><a href="<?=ROOT?>/about">About</a></li>
                     <li><a href="<?=ROOT?>/contact">Contact US</a></li>
-                    <li><a href="<?=ROOT?>/login">Login</a></li>
+                    
+                    <?php if(!logged_in()):?>
+                        <li><a href="<?=ROOT?>/login">Login</a></li>
+                    <?php endif;?>
+
                 </ul>
             </div>
             <div class="footer-div">
@@ -36,4 +40,4 @@
         </div>
     </div>
 </footer>
-<script src="<?=ROOT?>/assets/js/menu-popper.js?2"></script>  
+<script src="<?=ROOT?>/assets/js/menu-popper.js?35"></script>  

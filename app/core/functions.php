@@ -51,7 +51,7 @@ function db_query_one($query, $data = array())
         if($check){
             $result = $stm->fetchAll(PDO::FETCH_ASSOC);
             
-            if(is_array(result)&& count(result)>0)
+            if(is_array($result)&& count($result)>0)
             {
                 return $result[0];
             }
@@ -105,4 +105,45 @@ function set_select($key, $value)
     }
 
     return '';
+}
+
+function get_date($date)
+{
+    return date("jS M, Y",strtotime($date));
+}
+
+function logged_in()
+{
+    
+    if(!empty($_SESSION['USER']) && is_array($_SESSION['USER'])) {
+        return true;
+    }
+
+    return false;
+}
+
+function is_admin()
+{
+    
+    if(!empty($_SESSION['USER']['role']) && $_SESSION['USER']['role'] == 'admin') {
+        return true;
+    }
+    
+    return false;
+}
+
+function user($column)
+{
+    if(!empty($_SESSION['USER'][$column])) {
+        return $_SESSION['USER'][$column];
+    }
+
+    return "Unknown";
+    
+}
+
+function authenticate($row)
+{
+    $_SESSION['USER'] = $row;
+    
 }

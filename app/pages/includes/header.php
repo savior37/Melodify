@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melodify - Your Music Journey Starts Here</title>
-    <link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/style.css?67">
     
 </head>
 <body>
@@ -78,20 +78,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="nav-item dropdown user-nav">
-                            <a href="<?=ROOT?>/profile">Hi, Danu</a>
-                            <div class="dropdown-list hide">
-                                <div class="nav-item">
-                                    <a href="<?=ROOT?>/profile">Profile</a>
-                                </div>
-                                <div class="nav-item">
-                                    <a href="<?=ROOT?>/admin">Admin</a>
-                                </div>
-                                <div class="nav-item">
-                                    <a href="<?=ROOT?>/logout">Logout</a>
+
+                        <?php if(logged_in()):?>
+                            <div class="nav-item dropdown user-nav">
+                                <a href="<?=ROOT?>/profile">Hi, <?=user('username')?></a>
+                                <div class="dropdown-list hide">
+                                    <div class="nav-item">
+                                        <a href="<?=ROOT?>/profile">Profile</a>
+                                    </div>
+                                    <div class="nav-item">
+                                        <a href="<?=ROOT?>/admin">Admin</a>
+                                    </div>
+                                    <div class="nav-item">
+                                        <a href="<?=ROOT?>/logout">Logout</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php endif;?>
                     </nav>
                 </div>
             </div>

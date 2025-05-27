@@ -85,18 +85,15 @@
         }
         
         .nav-item a {
-            text-decoration: none;
-            color: #ffffff;
+            color: #ffffff !important;  /* Warna putih terang */
             font-weight: 500;
-            padding: 10px 16px;
-            display: block;
-            border-radius: 20px;
+            padding: 8px 16px;
             transition: all 0.3s ease;
         }
-        
+
         .nav-item a:hover {
-            color: #1db954;
-            background-color: rgba(29, 185, 84, 0.08);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff !important;
         }
         
         .nav-item.active a {
@@ -376,6 +373,14 @@
             position: relative;
             padding-top: 100%; /* 1:1 Aspect Ratio */
         }
+
+        .alert{
+            background-color: #ffb193;
+            color: #730000;
+            padding: 10px 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
         
         .music-card img {
             position: absolute;
@@ -532,14 +537,18 @@
         .table {
             width: 100%;
             border-collapse: collapse;
+            background-color: #eee;
         }
 
-        .table th,
-        .table td {
+        .table th, .table td {
             border: solid thin #ccc;
             padding: 5px 10px;
         }
 
+        .table th{
+            background-color: #444;
+            color: white;
+        }
         
         /* Responsive Styles */
         @media (max-width: 992px) {
@@ -654,4 +663,60 @@
             .card-subtitle {
                 font-size: 14px;
             }
+        }
+
+        /* Contoh styling form */
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .form-control {
+            padding: 10px 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007BFF; /* warna biru saat fokus */
+            box-shadow: 0 0 5px rgba(0,123,255,0.5);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
         }

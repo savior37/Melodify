@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melodify - Your Music Journey Starts Here</title>
-    <link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/style.css?455">
+    <link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/style.css?45">
 </head>
 <style>
     header a{
@@ -45,7 +45,7 @@
                             <a href="<?=ROOT?>/admin/artists">Artists</a>
                         </div>
                         <div class="nav-item dropdown user-nav">
-                            <a href="<?=ROOT?>/profile">Hi, Danu</a>
+                            <a href="<?=ROOT?>/profile">Hi, <?=user('username')?></a>
                             <div class="dropdown-list hide">
                                 <div class="nav-item">
                                     <a href="<?=ROOT?>/profile">Profile</a>
