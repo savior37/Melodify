@@ -1,722 +1,808 @@
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #75750052 !important; /* Tambahkan !important */
-            color: #180909;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: #0c1501 !important; /* Tambahkan !important */
-            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-content {
-            display: flex;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo-container {
-            flex: 0 0 80px;
-        }
-        
-        .logo {
-            width: 100%;
-            height: auto;
-        }
-        
-        .header-main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            margin-left: 20px;
-        }
-        
-        .brand-name {
-            font-size: 24px;
-            font-weight: 700;
-            color: #fff7f7;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .social {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social svg {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .social svg:hover {
-            color: #6200ea;
-        }
-        
-        /* Navigation Styles */
-        .main-nav {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        
-        .nav-item {
-            position: relative;
-            margin-right: 5px;
-            min-width: 80px;
-        }
-        
-        .nav-item a {
-            color: #ffffff !important;  /* Warna putih terang */
-            font-weight: 500;
-            padding: 8px 16px;
-            transition: all 0.3s ease;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        .nav-item a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #ffffff !important;
-        }
-        
-        .nav-item.active a {
-            color: #1db954;
-            background-color: rgba(29, 185, 84, 0.12);
-            font-weight: 600;
-        }
-        
-        .user-nav {
-            margin-left: auto;
-            background-color: #1db954;
-            border-radius: 25px;
-            box-shadow: 0 3px 10px rgba(29, 185, 84, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .user-nav:hover {
-            background-color: #19a449;
-            transform: translateY(-2px);
-        }
-        
-        .user-nav a {
-            color: black !important;
-            padding: 8px 20px !important;
-            font-weight: 600 !important;
-        }
-        
-        .user-nav a:hover {
-            background-color: transparent !important;
-        }
-        
-        /* Dropdown Styles */
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-list {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            min-width: 180px;
-            z-index: 10;
-            display: none;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 5px;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .dropdown-list.hide {
-            display: none;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .dropdown:hover .dropdown-list {
-            display: block;
-        }
-        
-        .dropdown-list .nav-item {
-            display: block;
-            margin: 0;
-            width: 100%;
-        }
-        
-        .dropdown-list .nav-item a {
-            padding: 10px 20px;
-            border-radius: 0;
-            color: #555;
-        }
-        
-        .dropdown-list .nav-item a:hover {
-            background-color: #f5f5f5;
-            color: #1db954;
-        }
-        
-        /* Hero Section Styles */
-        .hero-section {
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            height: 65vh;
-            min-height: 450px;
-            border-radius: 0 0 30px 30px;
-            margin-bottom: 40px;
-        }
-        
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            filter: brightness(0.8);
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hero-content {
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            max-width: 800px;
-            z-index: 2;
-        }
-        
-        .hero-title {
-            font-size: 52px;
-            font-weight: 800;
-            margin-bottom: 25px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-            line-height: 1.2;
-        }
-        
-        .hero-subtitle {
-            font-size: 26px;
-            margin-bottom: 35px;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-            font-weight: 300;
-        }
-        
-        .hero-btn {
-            display: inline-block;
-            background-color: #0a9039;
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
-        }
-        
-        .hero-btn:hover {
-            background-color: #19a449;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(29, 185, 84, 0.4);
-        }
-        .float-end{
-            float:right;
-        }
-        .bg-blue{
-        background-color: blue;
-        color: white;
-        }
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #121212 !important;
+    color: #ffffff;
+    line-height: 1.6;
+}
 
-        .bg-purple{
-            background-color: purple;
-            color: white;
-        }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-        .bg-orange{
-            background-color: orange;
-            color: white;
-        }
-        .m-1{
-            margin: 10px;
-        }
+/* Header Styles - Spotify Dark Theme */
+header {
+    background-color: #000000 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #282828;
+}
 
-        .m-2{
-            margin: 20px;
-        }
+.header-content {
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+}
 
-        .mx-1{
-            margin-left: 10px;
-            margin-right: 10px;
-        }
+.logo-container {
+    flex: 0 0 80px;
+}
 
-        .mx-2{
-            margin-left: 20px;
-            margin-right: 20px;
-        }
+.logo {
+    width: 100%;
+    height: auto;
+    filter: brightness(1.2);
+}
 
-        .admin-content{
-            padding: 20px;
-            background-color: #1ab56f;
-        }
-        /* Content Section Styles */
-        .content-section {
-            padding: 30px 0 60px;
-        }
-        
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #333;
-            position: relative;
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background-color: #1db954;
-            border-radius: 2px;
-        }
-        .error{
-            color: red;
-        }
-        
-        .view-all {
-            color: #1db954;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-        
-        .view-all:hover {
-            color: #19a449;
-            transform: translateX(5px);
-        }
-        
-        .view-all::after {
-            content: "→";
-            margin-left: 5px;
-            transition: transform 0.3s ease;
-        }
-        
-        .view-all:hover::after {
-            transform: translateX(5px);
-        }
-        
-        /* Music Card Styles */
-        .music-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 25px;
-        }
-        
-        .music-card {
-            background-color: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .music-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .card-image-container {
-            overflow: hidden;
-            position: relative;
-            padding-top: 100%; /* 1:1 Aspect Ratio */
-        }
+.header-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
 
-        .alert{
-            background-color: #ffb193;
-            color: #730000;
-            padding: 10px 20px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .music-card img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        
-        .music-card:hover img {
-            transform: scale(1.08);
-        }
-        
-        .card-content {
-            padding: 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .card-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: #333;
-            transition: color 0.3s ease;
-        }
-        
-        .music-card:hover .card-title {
-            color: #1db954;
-        }
-        
-        .card-subtitle {
-            font-size: 15px;
-            color: #666;
-            font-weight: 400;
-        }
-        
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 12px;
-            font-size: 14px;
-            color: #888;
-            border-top: 1px solid #eee;
-            padding-top: 12px;
-            margin-top: auto;
-        }
-        
-        .play-count {
-            display: flex;
-            align-items: center;
-        }
-        
-        .play-count::before {
-            content: "♪";
-            margin-right: 5px;
-            color: #1db954;
-        }
-        
-        .card-badge {
-            background-color: rgba(29, 185, 84, 0.1);
-            color: #1db954;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        
-        /* Footer Styles */
-        footer {
-            background-color: #111;
-            color: #fff;
-            padding: 30px 0 30px;
-            margin-top: 0px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #1db954;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: #1db954;
-        }
-        
-        .footer-div {
-            margin: 20px 0;
-            color: #aaa;
-        }
-        
-        .form-group {
-            display: flex;
-            margin: 15px 0;
-        }
-        
-        .form-control {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 20px 0 0 20px;
-            outline: none;
-        }
-        
-        .btn {
-            background-color: #1db954;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 0 20px 20px 0;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        
-        .btn:hover {
-            background-color: #19a449;
-        
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-            color: #777;
-            font-size: 14px;
-        }
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #eee;
-        }
+.brand-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1db954;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
 
-        .table th, .table td {
-            border: solid thin #ccc;
-            padding: 5px 10px;
-        }
+.social {
+    display: flex;
+    gap: 16px;
+}
 
-        .table th{
-            background-color: #444;
-            color: white;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero-title {
-                font-size: 42px;
-            }
-            
-            .hero-subtitle {
-                font-size: 22px;
-            }
-            
-            .section-title {
-                font-size: 28px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                padding: 15px 0;
-            }
-            
-            .logo-container {
-                margin: 0 auto 15px;
-            }
-            
-            .brand-name {
-                text-align: center;
-            }
-            
-            .main-nav {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            
-            .nav-item {
-                margin: 5px;
-            }
-            
-            .user-nav {
-                margin: 10px auto 0;
-            }
-            
-            .dropdown-list {
-                position: absolute;
-                width: 200px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .hero-section {
-                height: 50vh;
-                min-height: 400px;
-            }
-            
-            .hero-title {
-                font-size: 36px;
-            }
-            
-            .hero-subtitle {
-                font-size: 20px;
-            }
-            
-            .section-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .section-title {
-                margin-bottom: 15px;
-            }
-            
-            .section-title:after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero-section {
-                height: 45vh;
-                min-height: 350px;
-            }
-            
-            .hero-title {
-                font-size: 28px;
-            }
-            
-            .hero-subtitle {
-                font-size: 16px;
-                margin-bottom: 25px;
-            }
-            
-            .hero-btn {
-                padding: 10px 25px;
-                font-size: 16px;
-            }
-            
-            .music-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-                gap: 15px;
-            }
-            
-            .card-content {
-                padding: 15px;
-            }
-            
-            .card-title {
-                font-size: 16px;
-            }
-            
-            .card-subtitle {
-                font-size: 14px;
-            }
-        }
+.social svg {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #b3b3b3;
+    width: 20px;
+    height: 20px;
+}
 
-        /* Contoh styling form */
-        .login-container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
-        }
+.social svg:hover {
+    color: #1db954;
+    transform: scale(1.1);
+}
 
-        .form-group {
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-        }
+/* Navigation Styles - Spotify Style */
+.main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
 
-        .form-label {
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            color: #333;
-        }
+.nav-item {
+    position: relative;
+}
 
-        .form-control {
-            padding: 10px 12px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 100%;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
-        }
+.nav-item a {
+    color: #b3b3b3 !important;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+}
 
-        .form-control:focus {
-            outline: none;
-            border-color: #007BFF; /* warna biru saat fokus */
-            box-shadow: 0 0 5px rgba(0,123,255,0.5);
-        }
+.nav-item a:hover {
+    background-color: #1a1a1a;
+    color: #ffffff !important;
+}
 
-        .btn {
-            width: 100%;
-            padding: 12px;
-            background-color: #007BFF;
-            color: white;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
+.nav-item.active a {
+    color: #1db954 !important;
+    background-color: #1db954;
+    color: #000000 !important;
+    font-weight: 600;
+}
 
-        .btn:hover {
-            background-color: #0056b3;
-        }
+
+.user-nav {
+    margin-left: auto;
+    background: linear-gradient(135deg, #1db954, #1ed760);
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+    transition: all 0.3s ease;
+    overflow: visible; /* Changed from hidden to visible to show dropdown */
+}
+
+.user-nav:hover {
+    background: linear-gradient(135deg, #1ed760, #1db954);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(29, 185, 84, 0.4);
+}
+
+.user-nav a {
+    color: #000000 !important;
+    padding: 12px 24px !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    text-decoration: none;
+}
+
+.user-nav a:hover {
+    background-color: transparent !important;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #282828;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    min-width: 180px;
+    z-index: 1000; /* Increased z-index to ensure it's on top */
+    display: none;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 8px;
+    border: 1px solid #404040;
+    animation: fadeIn 0.3s ease;
+    pointer-events: auto; /* Ensure dropdown can receive clicks */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown:hover .dropdown-list {
+    display: block;
+}
+
+/* Special handling for user-nav dropdown */
+.user-nav.dropdown:hover .dropdown-list,
+.user-nav:hover .dropdown-list {
+    display: block;
+}
+
+.dropdown-list .nav-item {
+    display: block;
+    margin: 0;
+    width: 100%;
+    position: relative; /* Ensure proper positioning */
+}
+
+.dropdown-list .nav-item a {
+    padding: 12px 16px;
+    border-radius: 0;
+    color: #b3b3b3 !important;
+    font-size: 14px;
+    display: block; /* Ensure full clickable area */
+    width: 100%;
+    text-decoration: none;
+    position: relative;
+    z-index: 1001; /* Ensure links are clickable */
+    cursor: pointer; /* Ensure cursor shows as pointer */
+}
+
+.dropdown-list .nav-item a:hover {
+    background-color: #3e3e3e;
+    color: #ffffff !important;
+}
+
+.dropdown-list.hide {
+    display: none;
+}
+
+/* Override hide class when parent is hovered */
+.dropdown:hover .dropdown-list.hide,
+.user-nav:hover .dropdown-list.hide {
+    display: block;
+    pointer-events: auto; /* Ensure clicks work even with hide class */
+}
+
+/* Hero Section Styles */
+.hero-section {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 65vh;
+    min-height: 450px;
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 48px;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 56px;
+    font-weight: 900;
+    margin-bottom: 24px;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.8);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    margin-bottom: 32px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    font-weight: 400;
+    color: #b3b3b3;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #1db954, #1ed760);
+    color: #000000;
+    padding: 16px 32px;
+    border-radius: 24px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(29, 185, 84, 0.4);
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.hero-btn:hover {
+    background: linear-gradient(135deg, #1ed760, #1db954);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(29, 185, 84, 0.5);
+    color: #000000;
+}
+
+/* Utility Classes */
+.float-end {
+    float: right;
+}
+
+.bg-blue {
+    background-color: #2b5ce6;
+    color: white;
+}
+
+.bg-purple {
+    background-color: #8b5cf6;
+    color: white;
+}
+
+.bg-orange {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.m-1 {
+    margin: 8px;
+}
+
+.m-2 {
+    margin: 16px;
+}
+
+.mx-1 {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.mx-2 {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.admin-content {
+    padding: 24px;
+    background-color: #1db954;
+    border-radius: 8px;
+    color: #000000;
+}
+
+/* Content Section Styles */
+.content-section {
+    padding: 48px 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    position: relative;
+    padding-bottom: 12px;
+    display: inline-block;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #1db954, #1ed760);
+    border-radius: 2px;
+}
+
+.error {
+    color: #f87171;
+    font-weight: 500;
+}
+
+.view-all {
+    color: #1db954;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.view-all:hover {
+    color: #1ed760;
+    transform: translateX(4px);
+}
+
+.view-all::after {
+    content: "→";
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.view-all:hover::after {
+    transform: translateX(4px);
+}
+
+/* Music Card Styles - Spotify Style */
+.music-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+}
+
+.music-card {
+    background-color: #181818;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.music-card:hover {
+    background-color: #282828;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+}
+
+.card-image-container {
+    overflow: hidden;
+    position: relative;
+    padding-top: 100%;
+    margin: 16px 16px 0 16px;
+    border-radius: 8px;
+}
+
+.alert {
+    background-color: #374151;
+    color: #f87171;
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 8px;
+    border-left: 4px solid #f87171;
+}
+
+.music-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.music-card:hover img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #ffffff;
+    transition: color 0.3s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.music-card:hover .card-title {
+    color: #1db954;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    color: #b3b3b3;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #b3b3b3;
+    padding-top: 12px;
+    margin-top: auto;
+}
+
+.play-count {
+    display: flex;
+    align-items: center;
+}
+
+.play-count::before {
+    content: "♪";
+    margin-right: 4px;
+    color: #1db954;
+}
+
+.card-badge {
+    background-color: rgba(29, 185, 84, 0.2);
+    color: #1db954;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Button Styles - Spotify Theme */
+.btn {
+    background: linear-gradient(135deg, #1db954, #1ed760);
+    color: #000000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #1ed760, #1db954);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(29, 185, 84, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #181818;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    border: none;
+    padding: 12px 16px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #282828;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    color: #b3b3b3;
+    border-bottom: 1px solid #282828;
+}
+
+.table tr:hover {
+    background-color: #282828;
+}
+
+/* Form Styles - Spotify Theme */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #181818;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    border: 1px solid #282828;
+}
+
+.form-group {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.form-control {
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #404040;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #1db954;
+    box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.1);
+}
+
+.form-control::placeholder {
+    color: #b3b3b3;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 48px 0 24px;
+    margin-top: 64px;
+    border-top: 1px solid #282828;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #b3b3b3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: #1db954;
+}
+
+.footer-div {
+    margin: 20px 0;
+    color: #b3b3b3;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid #282828;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 48px;
+    }
+    
+    .hero-subtitle {
+        font-size: 20px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        padding: 16px 0;
+    }
+    
+    .logo-container {
+        margin: 0 auto 16px;
+    }
+    
+    .brand-name {
+        text-align: center;
+        margin-bottom: 16px;
+    }
+    
+    .main-nav {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .nav-item {
+        margin: 4px;
+    }
+    
+    .user-nav {
+        margin: 16px auto 0;
+    }
+    
+    .hero-section {
+        height: 50vh;
+        min-height: 400px;
+    }
+    
+    .hero-title {
+        font-size: 40px;
+    }
+    
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .section-title {
+        margin-bottom: 16px;
+    }
+    
+    .section-title:after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .music-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        height: 45vh;
+        min-height: 350px;
+    }
+    
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+        margin-bottom: 24px;
+    }
+    
+    .hero-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+    
+    .music-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+    }
+    
+    .card-content {
+        padding: 12px;
+    }
+    
+    .card-title {
+        font-size: 14px;
+    }
+    
+    .card-subtitle {
+        font-size: 12px;
+    }
+    
+    .login-container {
+        padding: 24px;
+        margin: 16px;
+    }
+}
