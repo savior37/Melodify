@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2025 at 06:34 PM
+-- Generation Time: May 29, 2025 at 10:25 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,7 +31,8 @@ CREATE TABLE `artists` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `bio` text NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `image` varchar(1024) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -45,6 +46,16 @@ CREATE TABLE `categories` (
   `category` varchar(30) NOT NULL,
   `disabled` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `category`, `disabled`) VALUES
+(1, 'Pop', 0),
+(2, 'Country', 0),
+(3, 'R&B', 0),
+(4, 'Dance', 0);
 
 -- --------------------------------------------------------
 
@@ -83,11 +94,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `date`) VALUES
-(1, 'jarotvijasa', 'rajakindi09@gmail.com', '$2y$10$8VawR4iw3tPGmZ2cu95R/.Fcn8jBSJZw4r0/bho2EshlBz3ki2oZO', 'admin', '2025-05-26 18:01:18'),
-(2, 'jarotvijasa', 'rajakindi09@gmail.com', '$2y$10$X7ntMBoj1m1qxDX53wRseeH.w6oMn7ba8Ptg9d0l5V13Y26Ic0Koe', 'admin', '2025-05-26 18:01:26'),
+(1, 'jarotvijasa', 'rajakindi09@gmail.com', '$2y$10$s.dUM6/DkC3PYoypRJG51OPbIqj/JYojprFwgmpWKio/3/Su/qmXC', 'admin', '2025-05-26 18:01:18'),
 (3, 'jarotvijasa', 'jarotvijasa@gmail.com', '$2y$10$h9CP4MHyMGLQm3qoqgn6IO3iM3TLQD5w9axNF96YPy4LwV/xvdTmC', 'admin', '2025-05-27 15:01:21'),
 (4, 'adam', 'adam@gmail.com', '$2y$10$fOwEwy1S30h44wavh9bVLeb3rDM0MI1XC.pTXxXRF.3AkxttIdDjq', 'user', '2025-05-27 15:01:22'),
-(5, 'jarotvijasa', 'raja.avicenna@office.ui.ac.id', '$2y$10$W8sSNgFP4azfB6yg.HtVmOmu0S56wL0zTmIQQ1Ta9g6xFg07QJkAa', 'admin', '2025-05-27 15:01:27'),
+(5, 'jarotvijasa', 'raja.avicenna@office.ui.ac.id', '$2y$10$W8sSNgFP4azfB6yg.HtVmOmu0S56wL0zTmIQQ1Ta9g6xFg07QJkAa', 'user', '2025-05-27 15:01:27'),
 (6, 'jarotvijasa', 'hanifalauddinakbar@gmail.com', '$2y$10$9BwUMGMrW0wZXXIlNQK4z.wxhBW2URCs1S6M5ecszcmrS7q3mcf2W', 'admin', '2025-05-27 15:01:33');
 
 --
@@ -145,7 +155,7 @@ ALTER TABLE `artists`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `songs`

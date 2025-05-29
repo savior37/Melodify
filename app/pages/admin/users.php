@@ -57,7 +57,7 @@ if ($action == 'add') {
         $query = "select * from users where id = :id limit 1";
         $row = db_query_one($query, ['id' => $id]);
 
-        if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST) {
+        if ($_SERVER['REQUEST_METHOD'] == "POST" && $row) {
 
             $errors = [];
 
@@ -109,6 +109,34 @@ if ($action == 'add') {
             }
         }
     } else
+    if ($action == 'delete') {
+
+
+        $query = "select * from users where id = :id limit 1";
+        $row = db_query_one($query, ['id' => $id]);
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST" && $row) {
+
+            $errors = [];
+
+            if($row['id'] == 1)
+            {
+                $errors['username'] = "the main admin can not be deleted";
+            }
+            if (empty($errors)) {
+
+                $values = [];
+                $values['id'] = $id;
+                $query = "delete from users where id = :id limit 1";
+
+                db_query($query, $values);
+
+                message("user deleted successfully");
+                redirect('admin/users');
+            }
+        }
+    } 
+
 ?>
 <?php require page('includes/admin-header') ?>
 
@@ -220,10 +248,40 @@ if ($action == 'add') {
                 <?php endif; ?>
             </form>
         </div>
-
-
+        
     <?php elseif (isset($action) && $action == 'delete'): ?>
-        delete
+
+        <div style="max-width: 500px; margin: auto">
+            <form method="post">
+                <h3>Delete User</h3>
+                <?php if (!empty($row)): ?>
+                    <div style="margin-bottom: 15px;">
+                        <div class="form-control" ><?= set_value('username', $row['username'])?></div>
+                        <?php if (!empty($errors['username'])): ?>
+                            <small class="error"><?= $errors['username'] ?></small>
+                        <?php endif; ?>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <div class="form-control" ><?= set_value('email', $row['email'])?></div>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <div class="form-control" ><?= set_value('role', $row['role'])?></div>
+                    </div>
+
+                    <button class="btn bg-red" type="submit" style="border-radius: 6px; padding: 8px 16px;">Delete</button>
+                    <a href="<?= ROOT ?>/admin/users">
+                        <button type="button" class="float-end btn" style="border-radius: 6px; padding: 8px 16px;">Back</button>
+                    </a>
+                <?php else: ?>
+                    <div class="alert">That record was not found</div>
+                    <a href="<?= ROOT ?>/admin/users">
+                        <button type="button" class="float-end btn" style="border-radius: 6px; padding: 8px 16px;">Back</button>
+                    </a>
+                <?php endif; ?>
+            </form>
+        </div>
     <?php else: ?>
 
         <?php

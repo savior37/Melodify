@@ -17,6 +17,18 @@ switch ($section) {
         require page('admin/users');
         break;
 
+    case 'categories':
+        require page('admin/categories');
+        break;
+
+    case 'artists':
+        require page('admin/artists');
+        break;
+
+    case 'music':
+        require page('admin/music');
+        break;
+
     default:
         require page('admin/404');
         break;

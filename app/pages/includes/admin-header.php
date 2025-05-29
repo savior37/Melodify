@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melodify - Your Music Journey Starts Here</title>
-    <link rel="stylesheet" type="text/css" href="<?= ROOT ?>/assets/css/style.css?455">
+    <link rel="stylesheet" type="text/css" href="<?= ROOT ?>/assets/css/style.css?5242">
 </head>
 <style>
     header a {
@@ -42,7 +42,7 @@
                         <a href="<?= ROOT ?>/admin/music">Music</a>
                     </div>
                     <div class="nav-item">
-                        <a href="<?= ROOT ?>/admin/category">Categories</a>
+                        <a href="<?= ROOT ?>/admin/categories">Categories</a>
                     </div>
                     <div class="nav-item">
                         <a href="<?= ROOT ?>/admin/artists">Artists</a>

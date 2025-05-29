@@ -310,6 +310,11 @@ header {
     color: white;
 }
 
+.bg-red {
+    background-color: #ff0000;
+    color: white;
+}
+
 .bg-orange {
     background-color: #f59e0b;
     color: white;
