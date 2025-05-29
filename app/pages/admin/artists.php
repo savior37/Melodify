@@ -9,37 +9,34 @@ if ($action == 'add') {
         if (empty($_POST['name'])) {
             $errors['name'] = "a name is required";
         } else
-        if (!preg_match("/^[a-zA-Z \&\-]+$/", $_POST['name'])) {
-            $errors['name'] = "a name can only letters & spaces";
-        }
+            if (!preg_match("/^[a-zA-Z \&\-]+$/", $_POST['name'])) {
+                $errors['name'] = "a name can only letters & spaces";
+            }
 
         //image
-        if(!empty($_FILES['image']['name']))
-        {
+        if (!empty($_FILES['image']['name'])) {
 
             $folder = "uploads/";
-            if(!file_exists($folder))
-            {
-                mkdir($folder,0777,true);
-                file_put_contents($folder."index.php", "");
+            if (!file_exists($folder)) {
+                mkdir($folder, 0777, true);
+                file_put_contents($folder . "index.php", "");
             }
 
-            $allowed = ['image/jpeg','image/png'];
+            $allowed = ['image/jpeg', 'image/png'];
 
-            if($_FILES['image']['error'] == 0 && in_array($_FILES['image']['type'], $allowed))
-            {
-                $destination = $folder. $_FILES['image']['name'];
-                
+            if ($_FILES['image']['error'] == 0 && in_array($_FILES['image']['type'], $allowed)) {
+                $destination = $folder . $_FILES['image']['name'];
+
                 move_uploaded_file($_FILES['image']['tmp_name'], $destination);
-            } else {
-                $errors['name'] = "image not valid. Allowed types are ". implode(",", $allowed);
-            }
-            
-           
 
-        }else{
-            $errors['name'] = "a image is required";
+            } else {
+                $errors['image'] = "image not valid. Allowed types are " . implode(",", $allowed);
+            }
+        } else {
+            $errors["image"] = "an image is required";
         }
+
+
         if (empty($errors)) {
 
             $values = [];
@@ -50,7 +47,7 @@ if ($action == 'add') {
             $query = "insert into artists (name,image,user_id) values (:name,:image,:user_id)";
             db_query($query, $values);
 
-            message("name created successfully");
+            message("artist created successfully");
             redirect('admin/artists');
         }
     }
@@ -70,48 +67,73 @@ if ($action == 'add') {
                 $errors['name'] = "a name is required";
             } else
                 if (!preg_match("/^[a-zA-Z \&\-]+$/", $_POST['name'])) {
-                    $errors['name'] = "a name can only letters with no spaces";
+                    $errors['name'] = "a name can only letters & spaces";
                 }
 
+            //image handling for edit
+            $destination = '';
+            if (!empty($_FILES['image']['name'])) {
+                $folder = "uploads/";
+                if (!file_exists($folder)) {
+                    mkdir($folder, 0777, true);
+                    file_put_contents($folder . "index.php", "");
+                }
+
+                $allowed = ['image/jpeg', 'image/png'];
+
+                if ($_FILES['image']['error'] == 0 && in_array($_FILES['image']['type'], $allowed)) {
+                    $destination = $folder . $_FILES['image']['name'];
+                    move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+                } else {
+                    $errors['image'] = "image not valid. Allowed types are " . implode(",", $allowed);
+                }
+            }
 
             if (empty($errors)) {
 
                 $values = [];
                 $values['name'] = trim($_POST['name']);
-                $values['disabled'] = trim($_POST['disabled']);
+                $values['user_id'] = user('id');
                 $values['id'] = $id;
 
-                $query = 'update artists set name = :name, disabled = :disabled where id = :id limit 1';
+                if (!empty($destination)) {
+                    $query = 'update artists set name = :name, user_id = :user_id, image = :image where id = :id limit 1';
+                    $values['image'] = $destination;
+                } else {
+                    $query = 'update artists set name = :name, user_id = :user_id where id = :id limit 1';
+                }
+
                 db_query($query, $values);
 
-                message("name edited successfully");
+                message("artist edited successfully");
                 redirect('admin/artists');
+
             }
         }
     } else
-    if ($action == 'delete') {
+        if ($action == 'delete') {
 
 
-        $query = "select * from artists where id = :id limit 1";
-        $row = db_query_one($query, ['id' => $id]);
+            $query = "select * from artists where id = :id limit 1";
+            $row = db_query_one($query, ['id' => $id]);
 
-        if ($_SERVER['REQUEST_METHOD'] == "POST" && $row) {
+            if ($_SERVER['REQUEST_METHOD'] == "POST" && $row) {
 
-            $errors = [];
+                $errors = [];
 
-            if (empty($errors)) {
+                if (empty($errors)) {
 
-                $values = [];
-                $values['id'] = $id;
-                $query = "delete from artists where id = :id limit 1";
+                    $values = [];
+                    $values['id'] = $id;
+                    $query = "delete from artists where id = :id limit 1";
 
-                db_query($query, $values);
+                    db_query($query, $values);
 
-                message("name deleted successfully");
-                redirect('admin/artists');
+                    message("artist deleted successfully");
+                    redirect('admin/artists');
+                }
             }
         }
-    } 
 
 ?>
 <?php require page('includes/admin-header') ?>
@@ -124,8 +146,8 @@ if ($action == 'add') {
                 <h3>Add New Artist</h3>
 
                 <div style="margin-bottom: 15px;">
-                    <input class="form-control" value="<?= set_value('name') ?>" type="text" name="name"
-                        placeholder="name" style="width: 100%; border-radius: 6px; padding: 8px 12px;">
+                    <input class="form-control" value="<?= set_value('name') ?>" type="text" name="name" placeholder="name"
+                        style="width: 100%; border-radius: 6px; padding: 8px 12px;">
                     <?php if (!empty($errors['name'])): ?>
                         <small class="error"><?= $errors['name'] ?></small>
                     <?php endif; ?>
@@ -137,7 +159,7 @@ if ($action == 'add') {
                         <small class="error"><?= $errors['image'] ?></small>
                     <?php endif; ?>
                 </div>
-                
+
                 <button class="btn bg-orange" type="submit" style="border-radius: 6px; padding: 8px 16px;">Create</button>
                 <a href="<?= ROOT ?>/admin/artists">
                     <button type="button" class="float-end btn" style="border-radius: 6px; padding: 8px 16px;">Back</button>
@@ -146,23 +168,24 @@ if ($action == 'add') {
         </div>
     <?php elseif (isset($action) && $action == 'edit'): ?>
         <div style="max-width: 500px; margin: auto">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <h3>Edit Artist</h3>
 
                 <?php if (!empty($row)): ?>
                     <div style="margin-bottom: 15px;">
-                        <input class="form-control" value="<?= set_value('name', $row['name']) ?>" type="text"
-                            name="name" placeholder="name" style="width: 100%; border-radius: 6px; padding: 8px 12px;">
+                        <input class="form-control" value="<?= set_value('name', $row['name']) ?>" type="text" name="name"
+                            placeholder="name" style="width: 100%; border-radius: 6px; padding: 8px 12px;">
                         <?php if (!empty($errors['name'])): ?>
                             <small class="error"><?= $errors['name'] ?></small>
                         <?php endif; ?>
                     </div>
-                    
-                    <select name="disabled" class="form-control" style="width: 100%; border-radius: 6px; padding: 8px 12px;">
-                        <option value="">--Select Disabled--</option>
-                        <option <?= set_select('disabled', '1', $row['disabled']) ?> value="1">Yes</option>
-                        <option <?= set_select('disabled', '0', $row['disabled']) ?> value="0">No</option>
-                    </select> 
+
+                    <img src="<?= ROOT ?>/<?= $row['image'] ?>" style="width:200px;height: 200px;object-fit: cover;">
+
+                    <input class="form-control" type="file" name="image">
+                    <?php if (!empty($errors['image'])): ?>
+                        <small class="error"><?= $errors['image'] ?></small>
+                    <?php endif; ?>
 
                     <button class="btn bg-orange" type="submit" style="border-radius: 6px; padding: 8px 16px;">Update</button>
                     <a href="<?= ROOT ?>/admin/artists">
@@ -176,7 +199,7 @@ if ($action == 'add') {
                 <?php endif; ?>
             </form>
         </div>
-        
+
     <?php elseif (isset($action) && $action == 'delete'): ?>
 
         <div style="max-width: 500px; margin: auto">
@@ -184,7 +207,7 @@ if ($action == 'add') {
                 <h3>Delete Artist</h3>
                 <?php if (!empty($row)): ?>
                     <div style="margin-bottom: 15px;">
-                        <div class="form-control" ><?= set_value('name', $row['name'])?></div>
+                        <div class="form-control"><?= set_value('name', $row['name']) ?></div>
                         <?php if (!empty($errors['name'])): ?>
                             <small class="error"><?= $errors['name'] ?></small>
                         <?php endif; ?>
@@ -229,7 +252,7 @@ if ($action == 'add') {
                     <tr>
                         <td><?= $row['id'] ?></td>
                         <td><?= $row['name'] ?></td>
-                        <td><?= $row['image'] ?></td>
+                        <td><img src="<?= ROOT ?>/<?= $row['image'] ?>" style="width:100px;height: 100px;object-fit: cover;"></td>
                         <td>
                             <a href="<?= ROOT ?>/admin/artists/edit/<?= $row['id'] ?>">
                                 <img class="bi" src="<?= ROOT ?>/assets/icons/pencil-square.svg">
