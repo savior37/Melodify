@@ -9,17 +9,45 @@ if ($action == 'add') {
         if (empty($_POST['name'])) {
             $errors['name'] = "a name is required";
         } else
-            if (!preg_match("/^[a-zA-Z \&\-]+$/", $_POST['name'])) {
-                $errors['name'] = "a name can only letters & spaces";
+        if (!preg_match("/^[a-zA-Z \&\-]+$/", $_POST['name'])) {
+            $errors['name'] = "a name can only letters & spaces";
+        }
+
+        //image
+        if(!empty($_FILES['image']['name']))
+        {
+
+            $folder = "uploads/";
+            if(!file_exists($folder))
+            {
+                mkdir($folder,0777,true);
+                file_put_contents($folder."index.php", "");
             }
 
+            $allowed = ['image/jpeg','image/png'];
+
+            if($_FILES['image']['error'] == 0 && in_array($_FILES['image']['type'], $allowed))
+            {
+                $destination = $folder. $_FILES['image']['name'];
+                
+                move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+            } else {
+                $errors['name'] = "image not valid. Allowed types are ". implode(",", $allowed);
+            }
+            
+           
+
+        }else{
+            $errors['name'] = "a image is required";
+        }
         if (empty($errors)) {
 
             $values = [];
             $values['name'] = trim($_POST['name']);
-            $values['disabled'] = trim($_POST['disabled']);
+            $values['image'] = $destination;
+            $values['user_id'] = user('id');
 
-            $query = "insert into artists (name,disabled) values (:name,:disabled)";
+            $query = "insert into artists (name,image,user_id) values (:name,:image,:user_id)";
             db_query($query, $values);
 
             message("name created successfully");
@@ -91,7 +119,8 @@ if ($action == 'add') {
 <section class="admin-content" style="min-height: 200px;">
     <?php if (isset($action) && $action == 'add'): ?>
         <div style="max-width: 500px; margin: auto">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
+
                 <h3>Add New Artist</h3>
 
                 <div style="margin-bottom: 15px;">
@@ -103,13 +132,9 @@ if ($action == 'add') {
                 </div>
 
                 <div style="margin-bottom: 15px;">
-                    <select name="disabled" class="form-control" style="width: 100%; border-radius: 6px; padding: 8px 12px;">
-                        <option value="">--Select Disabled--</option>
-                        <option <?= set_select('disabled', '1') ?> value="1">Yes</option>
-                        <option <?= set_select('disabled', '0') ?> value="0">No</option>
-                    </select>
-                    <?php if (!empty($errors['disabled'])): ?>
-                        <small class="error"><?= $errors['disabled'] ?></small>
+                    <input class="form-control" type="file" name="image">
+                    <?php if (!empty($errors['image'])): ?>
+                        <small class="error"><?= $errors['image'] ?></small>
                     <?php endif; ?>
                 </div>
                 
