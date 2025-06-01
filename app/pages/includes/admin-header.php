@@ -39,7 +39,7 @@
                         <a href="<?= ROOT ?>/admin/users">Users</a>
                     </div>
                     <div class="nav-item">
-                        <a href="<?= ROOT ?>/admin/music">Music</a>
+                        <a href="<?= ROOT ?>/admin/songs">Songs</a>
                     </div>
                     <div class="nav-item">
                         <a href="<?= ROOT ?>/admin/categories">Categories</a>

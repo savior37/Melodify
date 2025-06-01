@@ -146,3 +146,43 @@ function authenticate($row)
     $_SESSION['USER'] = $row;
 
 }
+function str_to_url($url)
+{
+    $url = str_replace(" ", "", $url);
+    $url = preg_replace('~[^\\pL\d]+~u', '-', $url);
+    $url = trim($url, " -");
+    $url = iconv("utf-8", "us-ascii//TRANSLIT", $url);
+    $url = strtolower($url);
+    $url = preg_replace('~[^-a-z0-9_]+~', '', $url);
+
+    return $url;
+}
+
+function get_category($id)
+{
+    $query = "select category from categories where id = :id limit 1";
+    $row = db_query_one($query, ['id' => $id]);
+
+    if (!empty($row['category'])) {
+        return $row['category'];
+    }
+
+    return "Unknown";
+}
+
+function esc($str)
+{
+    return htmlspecialchars($str);
+}
+
+function get_artist($id)
+{
+    $query = "select name from artists where id = :id limit 1";
+    $row = db_query_one($query, ['id' => $id]);
+
+    if (!empty($row['name'])) {
+        return $row['name'];
+    }
+
+    return "Unknown";
+}

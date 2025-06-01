@@ -14,7 +14,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 /* Header Styles - Spotify Dark Theme */
@@ -347,7 +347,7 @@ header {
 
 /* Content Section Styles */
 .content-section {
-    padding: 48px 0;
+    padding: 10px;
 }
 
 .section-header {
@@ -417,7 +417,7 @@ header {
 }
 
 .music-card {
-    background-color: #181818;
+    background-color: #000000;
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease;
