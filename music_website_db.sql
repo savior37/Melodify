@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Jun 2025 pada 07.43
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.4.7
+-- Generation Time: Jun 01, 2025 at 01:38 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `artists`
+-- Table structure for table `artists`
 --
 
 CREATE TABLE `artists` (
@@ -36,11 +36,11 @@ CREATE TABLE `artists` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `artists`
+-- Dumping data for table `artists`
 --
 
 INSERT INTO `artists` (`id`, `name`, `bio`, `user_id`, `image`) VALUES
-(2, 'Ardhito Pramono', '', 3, 'uploads/ardhiito.jpeg'),
+(2, 'Ardhito Pramono', 'What is Lorem Ipsum?\r\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\r\n\r\nThis is the end', 3, 'uploads/ardhiito.jpeg'),
 (4, 'Nadif Basalamah', '', 3, 'uploads/nadif.jpeg'),
 (5, 'Sabrina Carpenter', '', 3, 'uploads/sabrina.jpeg'),
 (6, 'Tenxi', '', 3, 'uploads/tenxi.jpeg'),
@@ -50,7 +50,7 @@ INSERT INTO `artists` (`id`, `name`, `bio`, `user_id`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -60,7 +60,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `category`, `disabled`) VALUES
@@ -72,7 +72,7 @@ INSERT INTO `categories` (`id`, `category`, `disabled`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `songs`
+-- Table structure for table `songs`
 --
 
 CREATE TABLE `songs` (
@@ -85,23 +85,24 @@ CREATE TABLE `songs` (
   `category_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `views` int(11) NOT NULL,
-  `slug` varchar(100) NOT NULL
+  `slug` varchar(100) NOT NULL,
+  `featured` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `songs`
+-- Dumping data for table `songs`
 --
 
-INSERT INTO `songs` (`id`, `title`, `user_id`, `artist_id`, `image`, `file`, `category_id`, `date`, `views`, `slug`) VALUES
-(1, 'Somebody\'s Pleasure', 3, 8, 'uploads/aziz.jpeg', 'uploads/SomebodyspleassureV2.mp3', 1, '2025-05-31 15:38:10', 0, 'somebodyspleasure'),
-(3, 'Kasih Aba-aba', 3, 6, 'uploads/tenxi.jpeg', 'uploads/Kasih aba-aba.mp3', 1, '2025-05-31 19:17:11', 0, 'kasihaba-aba'),
-(4, 'Nonsense', 3, 5, 'uploads/sabrina2.jpg', 'uploads/nonsense.mp3', 1, '2025-05-31 19:18:13', 0, 'nonsense'),
-(5, 'Bergema Sampai Selamanya', 3, 4, 'uploads/bergema.jpg', 'uploads/bergema sampai selamanya.mp3', 2, '2025-05-31 19:19:11', 0, 'bergemasampaiselamanya');
+INSERT INTO `songs` (`id`, `title`, `user_id`, `artist_id`, `image`, `file`, `category_id`, `date`, `views`, `slug`, `featured`) VALUES
+(1, 'Somebody\'s Pleasure', 3, 8, 'uploads/aziz.jpeg', 'uploads/SomebodyspleassureV2.mp3', 1, '2025-05-31 15:38:10', 8, 'somebodyspleasure', 1),
+(3, 'Kasih Aba-aba', 3, 6, 'uploads/tenxi.jpeg', 'uploads/Kasih aba-aba.mp3', 1, '2025-05-31 19:17:11', 0, 'kasihaba-aba', 0),
+(4, 'Nonsense', 3, 5, 'uploads/sabrina2.jpg', 'uploads/nonsense.mp3', 1, '2025-05-31 19:18:13', 1, 'nonsense', 1),
+(5, 'Bergema Sampai Selamanya', 3, 4, 'uploads/bergema.jpg', 'uploads/bergema sampai selamanya.mp3', 2, '2025-05-31 19:19:11', 8, 'bergemasampaiselamanya', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -114,7 +115,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `date`) VALUES
@@ -129,7 +130,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `date`) VALU
 --
 
 --
--- Indeks untuk tabel `artists`
+-- Indexes for table `artists`
 --
 ALTER TABLE `artists`
   ADD PRIMARY KEY (`id`),
@@ -137,7 +138,7 @@ ALTER TABLE `artists`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indeks untuk tabel `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
@@ -145,7 +146,7 @@ ALTER TABLE `categories`
   ADD KEY `disabled` (`disabled`);
 
 --
--- Indeks untuk tabel `songs`
+-- Indexes for table `songs`
 --
 ALTER TABLE `songs`
   ADD PRIMARY KEY (`id`),
@@ -155,10 +156,11 @@ ALTER TABLE `songs`
   ADD KEY `views` (`views`),
   ADD KEY `date` (`date`),
   ADD KEY `title` (`title`),
-  ADD KEY `slug` (`slug`);
+  ADD KEY `slug` (`slug`),
+  ADD KEY `featured` (`featured`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -168,29 +170,29 @@ ALTER TABLE `users`
   ADD KEY `date` (`date`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `artists`
+-- AUTO_INCREMENT for table `artists`
 --
 ALTER TABLE `artists`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `songs`
+-- AUTO_INCREMENT for table `songs`
 --
 ALTER TABLE `songs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
