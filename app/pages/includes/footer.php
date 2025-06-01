@@ -16,7 +16,7 @@
                 </ul>
             </div>
             <div class="footer-div">
-                <form>
+                <form action="<?=ROOT?>/search">
                     <div class="form-group">
                         <input class="form-control" type="text" placeholder="Search for music" name="find">
                         <button class="btn">Search</button>

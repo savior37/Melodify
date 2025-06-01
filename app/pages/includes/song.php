@@ -4,7 +4,8 @@
     </div>
     <div class="card-content">
         <h3 class="card-title"><?= esc($row['title']) ?></h3>
-        <p class="card-subtitle"><?= esc(get_artist($row['artist_id'])) ?></p>
+        <div class="card-subtitle" style="font-size: 16px;"><?= esc(get_artist($row['artist_id'])) ?></div>
+        <div class="card-subtitle" style="font-size: 12px;">Category: <?= esc(get_category($row['category_id'])) ?></div>
         <div class="card-meta">
             <span class="play-count">3.2M plays</span>
             <span class="card-badge">Popular</span>

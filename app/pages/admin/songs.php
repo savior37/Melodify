@@ -433,12 +433,15 @@ if ($action == 'add') {
                     </a>
                 <?php endif; ?>
             </form>
-        </div>
+        </div>  
     <?php else: ?>
 
         <?php
-        $query = "select * from songs order by id asc limit 20";
-        $rows = db_query($query);
+            $limit  = 20;
+            $offset = ($page - 1) * $limit;
+
+            $query = "select * from songs order by id asc limit $limit offset $offset";
+            $rows = db_query($query);
         ?>
 
         <h3>Song
@@ -488,6 +491,15 @@ if ($action == 'add') {
 
         </table>
     <?php endif; ?>
+
+    <div class="mx-2">
+        <a href="<?=ROOT?>/admin/songs?page=<?=$prev_page?>">
+            <button class="btn bg-orange">Prev</button>
+        </a>
+        <a href="<?=ROOT?>/admin/songs?page=<?=$next_page?>">
+            <button class="float-end btn bg-orange">Next</button>
+        </a>
+    </div>
 
 </section>
 <?php require page('includes/admin-footer') ?>

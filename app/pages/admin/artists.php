@@ -41,10 +41,11 @@ if ($action == 'add') {
 
             $values = [];
             $values['name'] = trim($_POST['name']);
+            $values['bio'] = trim($_POST['bio']);
             $values['image'] = $destination;
             $values['user_id'] = user('id');
 
-            $query = "insert into artists (name,image,user_id) values (:name,:image,:user_id)";
+            $query = "insert into artists (name,image,user_id,bio) values (:name,:image,:user_id,:bio)";
             db_query($query, $values);
 
             message("artist created successfully");
@@ -93,14 +94,15 @@ if ($action == 'add') {
 
                 $values = [];
                 $values['name'] = trim($_POST['name']);
+                $values['bio'] = trim($_POST['bio']);
                 $values['user_id'] = user('id');
                 $values['id'] = $id;
 
                 if (!empty($destination)) {
-                    $query = 'update artists set name = :name, user_id = :user_id, image = :image where id = :id limit 1';
+                    $query = 'update artists set name = :name, bio = :bio, user_id = :user_id, image = :image where id = :id limit 1';
                     $values['image'] = $destination;
                 } else {
-                    $query = 'update artists set name = :name, user_id = :user_id where id = :id limit 1';
+                    $query = 'update artists set name = :name, bio = :bio, user_id = :user_id where id = :id limit 1';
                 }
 
                 db_query($query, $values);
@@ -146,7 +148,7 @@ if ($action == 'add') {
                 <h3>Add New Artist</h3>
 
                 <div style="margin-bottom: 15px;">
-                    <input class="form-control" value="<?= set_value('name') ?>" type="text" name="name" placeholder="name"
+                    <input class="form-control" value="<?= set_value('name')?>" type="text" name="name" placeholder="name"
                         style="width: 100%; border-radius: 6px; padding: 8px 12px;">
                     <?php if (!empty($errors['name'])): ?>
                         <small class="error"><?= $errors['name'] ?></small>
@@ -154,12 +156,19 @@ if ($action == 'add') {
                 </div>
 
                 <div style="margin-bottom: 15px;">
+                    <label>Artist Image:</label>
                     <input class="form-control" type="file" name="image">
+
+                    <label>Artist Bio:</label>
+                    <textarea rows="10" class="form-control" name="bio"><?=set_value('bio')?></textarea>
+
                     <?php if (!empty($errors['image'])): ?>
                         <small class="error"><?= $errors['image'] ?></small>
                     <?php endif; ?>
                 </div>
 
+
+            
                 <button class="btn bg-orange" type="submit" style="border-radius: 6px; padding: 8px 16px;">Create</button>
                 <a href="<?= ROOT ?>/admin/artists">
                     <button type="button" class="float-end btn" style="border-radius: 6px; padding: 8px 16px;">Back</button>
@@ -181,11 +190,15 @@ if ($action == 'add') {
                     </div>
 
                     <img src="<?= ROOT ?>/<?= $row['image'] ?>" style="width:200px;height: 200px;object-fit: cover;">
-
+                    
+                    <div>Artist Image:</div>
                     <input class="form-control" type="file" name="image">
                     <?php if (!empty($errors['image'])): ?>
                         <small class="error"><?= $errors['image'] ?></small>
                     <?php endif; ?>
+
+                    <label>Artist Bio:</label>
+                    <textarea rows="10" class="form-control" name="bio"><?=set_value('bio',$row['bio'])?></textarea>
 
                     <button class="btn bg-orange" type="submit" style="border-radius: 6px; padding: 8px 16px;">Update</button>
                     <a href="<?= ROOT ?>/admin/artists">
@@ -252,7 +265,11 @@ if ($action == 'add') {
                     <tr>
                         <td><?= $row['id'] ?></td>
                         <td><?= $row['name'] ?></td>
-                        <td><img src="<?= ROOT ?>/<?= $row['image'] ?>" style="width:100px;height: 100px;object-fit: cover;"></td>
+                        <td>
+                            <a href="<?=ROOT?>/artist/<?=$row['id']?>">
+                            <img src="<?= ROOT ?>/<?= $row['image'] ?>" style="width:100px;height: 100px;object-fit: cover;">
+                            </a>
+                        </td>
                         <td>
                             <a href="<?= ROOT ?>/admin/artists/edit/<?= $row['id'] ?>">
                                 <img class="bi" src="<?= ROOT ?>/assets/icons/pencil-square.svg">

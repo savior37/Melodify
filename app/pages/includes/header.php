@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= ucfirst($URL[0]) ?>- Melodify - Your Music Journey Starts Here</title>
-    <link rel="stylesheet" type="text/css" href="<?= ROOT ?>/assets/css/style.css?677">
+    <link rel="stylesheet" type="text/css" href="<?= ROOT ?>/assets/css/style.css?67er">
 </head>
 
 <body>
@@ -44,22 +44,23 @@
                         </div>
                         <div class="nav-item dropdown">
                             <a href="<?= ROOT ?>/category">Categories</a>
+
+                            <?php
+                            // Query untuk mengambil data kategori dari database dengan error handling
+                                $query = "select * from categories order by category asc";
+                                $categories = db_query($query);
+                            ?>
+
                             <div class="dropdown-list hide">
-                                <div class="nav-item">
-                                    <a href="<?= ROOT ?>/category/country">Country</a>
-                                </div>
-                                <div class="nav-item">
-                                    <a href="<?= ROOT ?>/pop">Pop</a>
-                                </div>
-                                <div class="nav-item">
-                                    <a href="<?= ROOT ?>/category/rnb">R&B</a>
-                                </div>
-                                <div class="nav-item">
-                                    <a href="<?= ROOT ?>/category/rock">Rock</a>
-                                </div>
-                                <div class="nav-item">
-                                    <a href="<?= ROOT ?>/category/hiphop">Hip Hop</a>
-                                </div>
+                                
+                                <?php if (!empty($categories)): ?>
+                                    <?php foreach ($categories as $cat): ?>
+                                        <div class="nav-item">
+                                            <a href="<?=ROOT?>/category/<?= $cat['category'] ?>"><?= $cat['category'] ?></a>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                          
                             </div>
                         </div>
                         <div class="nav-item">
@@ -84,11 +85,11 @@
                         </div>
 
                         <?php if (logged_in()): ?>
-                            <div class="nav-item dropdown user-nav dropdown">
+                            <div class="nav-item dropdown user-nav">
                                 <a href="<?= ROOT ?>/profile">Hi, <?= user('username') ?></a>
                                 <div class="dropdown-list hide">
                                     <div class="nav-item">
-                                        <a href="<?= ROOT ?>/profile">Profile</a>
+                                        <a href="<?= ROOT ?>/admin/users/edit/<?=user('id')?>">Profile</a>
                                     </div>
                                     <div class="nav-item">
                                         <a href="<?= ROOT ?>/admin">Admin</a>

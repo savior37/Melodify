@@ -4,33 +4,24 @@
     <!-- Featured Tracks Section -->
     <section class="content-section">
         <div class="section-header">
-            <h2 class="section-title">Music</h2>
+            <h2 class="section-title">Category</h2>
         </div>
 
         <div class="music-grid">
             <?php
-                $limit  = 20;
-                $offset = ($page - 1) * $limit;
-                
+                $category = $URL[1] ?? null; 
+                $query = "select * from songs where category_id in (select id from categories where category = :category) order by views desc limit 24"; 
 
-                $rows = db_query("select * from songs order by views desc limit $limit offset $offset");
+                $rows = db_query($query,['category'=>$category]);
             ?>
             <?php if (!empty($rows)): ?>
                 <?php foreach ($rows as $row): ?>
                     <?php include page('includes/song') ?>
                 <?php endforeach; ?>
+            <?php else:?>
+                    <div class="m-2">No songs found</div>
             <?php endif; ?>
         </div>
- 
     </section>
-
-    <div class="mx-2">
-        <a href="<?=ROOT?>/music?page=<?=$prev_page?>">
-            <button class="btn bg-orange">Prev</button>
-        </a>
-        <a href="<?=ROOT?>/music?page=<?=$next_page?>">
-            <button class="float-end btn bg-orange">Next</button>
-        </a>
-    </div>
 </main>
 <?php require page('includes/footer') ?>

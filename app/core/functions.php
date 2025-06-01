@@ -172,7 +172,7 @@ function get_category($id)
 
 function esc($str)
 {
-    return htmlspecialchars($str);
+    return nl2br(htmlspecialchars($str));
 }
 
 function get_artist($id)
